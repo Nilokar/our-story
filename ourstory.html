@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Allura&amp;family=Parisienne&amp;family=Libre+Caslon+Display&amp;family=Cormorant+Garamond:wght@400;500;600&amp;family=Montserrat:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --cream: #f8f1db;
+      --cream-deep: #efe2c8;
+      --paper: #f4e6cf;
+      --gold: #9a6b2f;
+      --gold-soft: #b98c4c;
+      --gold-light: #d9bc7a;
+      --ink: #403429;
+      --muted: #786a5d;
+      --line: rgba(145, 103, 52, 0.28);
+      --shadow: rgba(54, 36, 19, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background:
+        radial-gradient(
+          circle at 15% 10%,
+          rgba(255,255,255,.58),
+          transparent 28%
+        ),
+        linear-gradient(
+          180deg,
+          #fbf6e8 0%,
+          var(--cream) 42%,
+          #f4ead5 100%
+        );
+    }
+
+    body {
+      background: transparent;
+
+      color: var(--ink);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      overflow-x: hidden;
+    }
+
+    .story {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      padding:
+        clamp(72px, 8vw, 118px)
+        clamp(18px, 4vw, 64px)
+        clamp(90px, 10vw, 150px);
+    }
+
+    .intro {
+      max-width: 820px;
+      margin: 0 auto clamp(84px, 10vw, 140px);
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+
+      color: var(--gold);
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+
+      font-family: "Allura", "Libre Caslon Display", Georgia, serif;
+      font-size: clamp(64px, 9vw, 132px);
+      font-weight: 400;
+      line-height: 0.94;
+
+      background:
+        linear-gradient(
+          180deg,
+          #e6d29b 0%,
+          #c08d3c 48%,
+          #8a5c24 100%
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+
+      text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.80),
+        0 0 18px rgba(213, 177, 101, 0.18);
+    }
+
+    .intro-quote {
+      max-width: 600px;
+      margin: 34px auto 0;
+
+      color: var(--muted);
+      font-size: clamp(22px, 2.5vw, 31px);
+      font-style: italic;
+      line-height: 1.45;
+    }
+
+    .intro-rule {
+      width: min(180px, 40%);
+      height: 1px;
+      margin: 34px auto 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(148, 103, 48, 0.58),
+          transparent
+        );
+    }
+
+    .chapter {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: clamp(34px, 6vw, 92px);
+      align-items: center;
+
+      margin-bottom: clamp(88px, 11vw, 156px);
+    }
+
+    .chapter.reverse {
+      grid-template-columns: minmax(320px, 0.95fr) minmax(0, 1.05fr);
+    }
+
+    .chapter.reverse .visual {
+      order: 2;
+    }
+
+    .chapter.reverse .copy {
+      order: 1;
+    }
+
+    .visual {
+      position: relative;
+    }
+
+    .photo {
+      position: relative;
+      overflow: hidden;
+
+      aspect-ratio: 4 / 5;
+      min-height: 420px;
+
+      display: flex;
+      align-items: flex-end;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(66, 46, 26, 0.02),
+          rgba(42, 28, 18, 0.34)
+        ),
+        linear-gradient(
+          145deg,
+          #d8c3a2,
+          #9d8260
+        );
+
+      border:
+        1px solid
+        rgba(151, 110, 58, 0.32);
+
+      box-shadow:
+        0 22px 48px var(--shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    }
+
+    .photo::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.28);
+
+      pointer-events: none;
+    }
+
+    .photo-label {
+      position: relative;
+      z-index: 1;
+
+      width: 100%;
+      padding: 20px 22px;
+
+      color: rgba(255, 255, 255, 0.92);
+      background:
+        linear-gradient(
+          180deg,
+          transparent,
+          rgba(31, 23, 16, 0.60)
+        );
+
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    .stamp {
+      position: absolute;
+      top: -26px;
+      right: -20px;
+      z-index: 3;
+
+      width: clamp(126px, 14vw, 170px);
+      aspect-ratio: 1;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      color: rgba(138, 88, 34, 0.86);
+      background:
+        rgba(248, 241, 219, 0.82);
+
+      border:
+        2px solid
+        rgba(149, 98, 39, 0.62);
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 8px 20px rgba(64, 40, 18, 0.10),
+        inset 0 0 0 5px rgba(149, 98, 39, 0.08);
+
+      text-align: center;
+      transform: rotate(4deg);
+      backdrop-filter: blur(2px);
+    }
+
+    .reverse .stamp {
+      right: auto;
+      left: -20px;
+      transform: rotate(-4deg);
+    }
+
+    .stamp-small {
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 7px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .stamp-city {
+      margin-top: 8px;
+
+      font-family: "Libre Caslon Display", Georgia, serif;
+      font-size: clamp(16px, 1.5vw, 21px);
+      line-height: 1;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .stamp-country {
+      margin-top: 7px;
+
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    .copy {
+      position: relative;
+      padding: clamp(10px, 2vw, 26px) 0;
+    }
+
+    .chapter-number {
+      margin: 0 0 12px;
+
+      color: var(--gold-soft);
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+
+      color: var(--gold);
+      font-family: "Libre Caslon Display", Georgia, serif;
+      font-size: clamp(42px, 5vw, 72px);
+      font-weight: 400;
+      line-height: 0.98;
+    }
+
+    .subtitle {
+      margin: 16px 0 0;
+
+      color: var(--muted);
+      font-family: "Allura", "Libre Caslon Display", Georgia, serif;
+      font-size: clamp(27px, 3vw, 39px);
+      line-height: 1.08;
+    }
+
+    .copy-rule {
+      width: 72px;
+      height: 1px;
+      margin: 26px 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(149, 105, 52, 0.70),
+          transparent
+        );
+    }
+
+    .copy p {
+      margin: 0 0 18px;
+
+      color: var(--ink);
+      font-size: clamp(18px, 1.65vw, 23px);
+      line-height: 1.72;
+    }
+
+    .note {
+      display: inline-block;
+      max-width: 340px;
+      margin-top: 12px;
+      padding: 16px 18px;
+
+      color: var(--gold);
+      background:
+        rgba(255, 255, 255, 0.34);
+
+      border-left:
+        2px solid
+        rgba(151, 104, 48, 0.58);
+
+      font-family: "Parisienne", cursive;
+      font-size: clamp(24px, 2.4vw, 33px);
+      line-height: 1.2;
+
+      transform: rotate(-1deg);
+    }
+
+    .reverse .note {
+      transform: rotate(1deg);
+    }
+
+    .wide {
+      display: block;
+      margin-bottom: clamp(96px, 12vw, 166px);
+    }
+
+    .wide .photo {
+      aspect-ratio: 16 / 8;
+      min-height: 500px;
+    }
+
+    .wide .copy {
+      max-width: 760px;
+      margin: 42px auto 0;
+      text-align: center;
+    }
+
+    .wide .copy-rule {
+      margin-left: auto;
+      margin-right: auto;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(149, 105, 52, 0.70),
+          transparent
+        );
+    }
+
+    .wide .note {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .finale {
+      max-width: 760px;
+      margin: 0 auto;
+      padding:
+        clamp(54px, 7vw, 86px)
+        clamp(22px, 5vw, 58px);
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at 18% 12%,
+          rgba(255, 255, 255, 0.54),
+          transparent 28%
+        ),
+        linear-gradient(
+          145deg,
+          #f6ead3,
+          #e7d0ab
+        );
+
+      border:
+        1px solid
+        rgba(147, 103, 51, 0.46);
+
+      box-shadow:
+        0 26px 56px rgba(55, 37, 20, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.66);
+    }
+
+    .finale-label {
+      margin: 0 0 18px;
+
+      color: var(--gold);
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+    }
+
+    .finale h2 {
+      font-size: clamp(48px, 7vw, 88px);
+    }
+
+    .finale-place {
+      margin: 24px 0 0;
+
+      color: var(--ink);
+      font-size: clamp(22px, 2.6vw, 34px);
+      line-height: 1.4;
+    }
+
+    .finale-date {
+      margin: 18px 0 0;
+
+      color: var(--gold);
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 800ms ease,
+        transform 800ms ease;
+    }
+
+    .fade.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 860px) {
+      .story {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .chapter,
+      .chapter.reverse {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .chapter.reverse .visual,
+      .chapter.reverse .copy {
+        order: initial;
+      }
+
+      .photo,
+      .wide .photo {
+        aspect-ratio: 4 / 5;
+        min-height: 420px;
+      }
+
+      .stamp,
+      .reverse .stamp {
+        top: -22px;
+        right: 14px;
+        left: auto;
+        transform: rotate(3deg);
+      }
+
+      .copy {
+        padding: 0 8px;
+      }
+
+      .wide .copy {
+        text-align: left;
+      }
+
+      .wide .copy-rule {
+        margin-left: 0;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(149, 105, 52, 0.70),
+            transparent
+          );
+      }
+    }
+
+    @media (max-width: 520px) {
+      .story {
+        padding-top: 56px;
+      }
+
+      .intro {
+        margin-bottom: 92px;
+      }
+
+      .photo,
+      .wide .photo {
+        min-height: 360px;
+      }
+
+      .stamp,
+      .reverse .stamp {
+        width: 118px;
+        right: 8px;
+      }
+
+      .note {
+        max-width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .fade {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    .map-section,
+    .home-section {
+      margin-bottom: clamp(96px, 12vw, 166px);
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin: 0 auto 44px;
+      text-align: center;
+    }
+
+    .section-head .copy-rule {
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(149, 105, 52, 0.70),
+        transparent
+      );
+    }
+
+    .map-image {
+      position: relative;
+      min-height: 500px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(66,46,26,.02), rgba(42,28,18,.34)),
+        linear-gradient(145deg, #d8c3a2, #9d8260);
+      border: 1px solid rgba(151,110,58,.32);
+      box-shadow: 0 22px 48px var(--shadow);
+    }
+
+    .map-copy {
+      max-width: 760px;
+      margin: 40px auto 0;
+      text-align: center;
+    }
+
+    .map-copy p {
+      margin: 0 0 18px;
+      font-size: clamp(18px, 1.65vw, 23px);
+      line-height: 1.72;
+    }
+
+    .postcards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: clamp(18px, 3vw, 32px);
+      margin-top: 50px;
+    }
+
+    .postcard {
+      min-height: 250px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: #fff;
+      background:
+        linear-gradient(180deg, rgba(45,31,20,.02), rgba(35,24,16,.66)),
+        linear-gradient(145deg, #bca584, #765f45);
+      border: 1px solid rgba(147,103,51,.34);
+      box-shadow: 0 18px 40px rgba(52,35,19,.14);
+    }
+
+    .postcard h3 {
+      margin: 0;
+      font-family: "Libre Caslon Display", Georgia, serif;
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 400;
+    }
+
+    .postcard p {
+      margin: 8px 0 0;
+      font-size: clamp(17px, 1.6vw, 21px);
+      font-style: italic;
+    }
+
+    .home-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: clamp(24px, 4vw, 48px);
+      margin: 42px 0 56px;
+    }
+
+    .home-card {
+      padding: clamp(24px, 3vw, 36px);
+      background: rgba(255,255,255,.30);
+      border: 1px solid rgba(147,103,51,.24);
+      box-shadow: 0 14px 34px rgba(55,37,20,.08);
+    }
+
+    .home-card h3 {
+      margin: 0;
+      color: var(--gold);
+      font-family: "Libre Caslon Display", Georgia, serif;
+      font-size: clamp(32px, 3.4vw, 48px);
+      font-weight: 400;
+    }
+
+    .home-card p {
+      margin: 18px 0 0;
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.68;
+    }
+
+    .pets-note {
+      margin-top: 28px;
+      padding: 21px 24px;
+      color: var(--muted);
+      background: rgba(255,255,255,.34);
+      border: 1px solid rgba(147,103,51,.20);
+      font-size: clamp(18px, 1.6vw, 22px);
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    .proposal-yes {
+      margin-top: 22px;
+      color: var(--gold);
+      font-family: "Parisienne", cursive;
+      font-size: clamp(48px, 6vw, 78px);
+      line-height: 1;
+    }
+
+    .parrots {
+      margin-top: 26px;
+      color: var(--gold-soft);
+      font-size: 23px;
+      letter-spacing: 1.1em;
+      transform: translateX(.55em);
+    }
+
+    @media (max-width: 860px) {
+      .postcards,
+      .home-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  
+
+.intro{
+  margin-bottom: clamp(60px,8vw,100px)!important;
+}
+
+
+
+    .photo-caption {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: clamp(16px, 1.35vw, 19px);
+      font-style: italic;
+      text-align: center;
+    }
+
+    .postcard {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .photo,
+    .map-image,
+    .map-photo {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .finale {
+      margin-top: clamp(20px, 4vw, 54px);
+    }
+
+    .travel-collage {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      grid-template-areas:
+        "large small1"
+        "large small2"
+        "wide wide";
+      gap: clamp(14px, 2vw, 24px);
+      margin-top: clamp(42px, 6vw, 72px);
+    }
+
+    .collage-item {
+      min-height: 260px;
+      border: 1px solid rgba(147, 103, 51, 0.22);
+      box-shadow: 0 16px 36px rgba(52, 35, 19, 0.12);
+    }
+
+    .collage-large {
+      grid-area: large;
+      min-height: 620px;
+    }
+
+    .collage-small:nth-of-type(2) {
+      grid-area: small1;
+    }
+
+    .collage-small:nth-of-type(3) {
+      grid-area: small2;
+    }
+
+    .collage-wide {
+      grid-area: wide;
+      min-height: 360px;
+    }
+
+    .collage-note {
+      grid-column: 1 / -1;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: clamp(17px, 1.45vw, 20px);
+      font-style: italic;
+      text-align: center;
+    }
+
+    .sheera-wrap {
+      width: min(100%, 460px);
+      margin: clamp(34px, 5vw, 56px) auto 0;
+    }
+
+    .sheera-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border: 1px solid rgba(147, 103, 51, 0.24);
+      box-shadow: 0 16px 36px rgba(52, 35, 19, 0.12);
+    }
+
+    .photo-caption {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: clamp(16px, 1.35vw, 19px);
+      font-style: italic;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .travel-collage {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "large"
+          "small1"
+          "small2"
+          "wide";
+      }
+
+      .collage-large,
+      .collage-small,
+      .collage-wide {
+        min-height: 360px;
+      }
+
+      .sheera-wrap {
+        width: min(100%, 390px);
+      }
+    }
+    
+.subtitle{font-family:"Allura",cursive!important;font-size:clamp(30px,3.2vw,44px);line-height:1.08}
+.proposal-yes{font-family:"Parisienne",cursive!important}
+.travel-collage-final{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:72px;gap:clamp(10px,1.4vw,16px);margin-top:clamp(44px,6vw,74px);padding:clamp(8px,1.5vw,18px);position:relative}
+.travel-photo{overflow:hidden;border:8px solid rgba(248,241,219,.92);box-shadow:0 18px 38px rgba(52,35,19,.18);background-color:#cbb89a;position:relative;transition:transform .35s ease,box-shadow .35s ease;z-index:1}
+.travel-photo:hover{transform:translateY(-6px) rotate(0deg) scale(1.015)!important;box-shadow:0 24px 46px rgba(52,35,19,.24);z-index:20}
+.travel-a{grid-column:1/8;grid-row:1/6;transform:rotate(-1.2deg);z-index:2}.travel-b{grid-column:7/13;grid-row:1/4;transform:translate(-12px,18px) rotate(1.8deg);z-index:4}.travel-c{grid-column:8/13;grid-row:4/8;transform:translate(-20px,-8px) rotate(-1deg);z-index:3}.travel-d{grid-column:1/5;grid-row:6/10;transform:translate(14px,-16px) rotate(1.5deg);z-index:5}.travel-e{grid-column:4/9;grid-row:6/11;transform:translate(-6px,10px) rotate(-1.6deg);z-index:2}.travel-f{grid-column:8/13;grid-row:8/12;transform:translate(-10px,-14px) rotate(1.2deg);z-index:6}.travel-h{grid-column:1/7;grid-row:10/15;transform:translate(10px,-18px) rotate(-1deg);z-index:3}.travel-i{grid-column:6/10;grid-row:11/15;transform:translate(-14px,12px) rotate(1.8deg);z-index:7}.travel-j{grid-column:9/13;grid-row:12/16;transform:translate(-18px,-8px) rotate(-1.4deg);z-index:4}.travel-k{grid-column:3/10;grid-row:15/20;transform:translate(6px,-20px) rotate(.9deg);z-index:5}
+.travel-collage-final .collage-note{grid-column:1/-1;grid-row:20;margin:16px 0 0;align-self:center;z-index:30}
+.sheera-small{width:min(100%,360px);margin:clamp(30px,4vw,46px) auto 0}.sheera-image{display:block;width:100%;height:auto;border:1px solid rgba(147,103,51,.22);box-shadow:0 14px 30px rgba(52,35,19,.10)}
+.proposal-section{max-width:760px;margin:0 auto clamp(100px,12vw,166px);text-align:center}.proposal-section .copy{max-width:720px;margin:0 auto}.proposal-section .copy-rule{margin-left:auto;margin-right:auto;background:linear-gradient(90deg,transparent,rgba(149,105,52,.70),transparent)}.proposal-photo-wrap{width:min(100%,420px);margin:clamp(30px,4vw,44px) auto 0}.proposal-photo{display:block;width:100%;height:auto;border:1px solid rgba(147,103,51,.22);box-shadow:0 14px 30px rgba(52,35,19,.10)}
+@media(max-width:860px){.travel-collage-final{grid-template-columns:1fr 1fr;grid-auto-rows:auto;gap:18px;padding:0}.travel-photo{min-height:240px;grid-column:auto!important;grid-row:auto!important;transform:none!important;border-width:6px}.travel-a,.travel-h,.travel-k{grid-column:1/-1!important;min-height:330px}.travel-collage-final .collage-note{grid-column:1/-1;grid-row:auto;margin-top:8px}}
+@media(max-width:560px){.travel-collage-final{grid-template-columns:1fr}.travel-photo,.travel-a,.travel-h,.travel-k{grid-column:1!important;min-height:280px}.proposal-section{text-align:left}.proposal-section .copy-rule{margin-left:0;background:linear-gradient(90deg,rgba(149,105,52,.70),transparent)}.proposal-photo-wrap{width:min(100%,360px)}}
+
+
+/* Prevent extra document height after responsive resizing */
+html, body {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.story {
+  min-height: 0;
+  padding-bottom: clamp(48px, 6vw, 84px);
+}
+
+.finale {
+  margin-bottom: 0 !important;
+}
+
+
+body { overflow-y: hidden; }
+</style>
+</head>
+<body>
+<main class="story">
+<header class="intro fade">
+<h1>Our Story</h1>
+</header>
+<section class="chapter fade">
+<div class="visual">
+<div class="photo" style="background-image:linear-gradient(180deg, rgba(66,46,26,.05), rgba(42,28,18,.28)),url('https://static.wixstatic.com/media/e22f30_842203c425e9482c9bad9d87b71cfb9b~mv2.jpeg');background-size:cover;background-position:center;background-repeat:no-repeat;">
+</div>
+<div aria-hidden="true" class="stamp">
+<span class="stamp-small">Where It Began</span>
+<span class="stamp-city">Barcelona</span>
+<span class="stamp-country">Spain</span>
+</div>
+</div>
+<div class="copy">
+<p class="chapter-number">Where It All Began</p>
+<h2>Barcelona</h2>
+<p class="subtitle">A surprisingly effective scheme.</p>
+<div aria-hidden="true" class="copy-rule"></div>
+<p>
+          We met at work in Barcelona and spent three years as colleagues.
+        </p>
+<p>
+          There had always been something between us, but somehow life
+          had not quite found the right moment.
+        </p>
+<p><strong>
+          Eventually, Fredrik came up with an elaborate scheme to ask
+          Nilo out.
+        </strong></p>
+<p>
+          It involved two parrots...
+          <br/>
+          ...and cooking the Easter Bunny.
+        </p>
+<p>
+          Knowing that Nilo loved to paint, he asked if she would create
+          something for his apartment. In return, he promised to cook
+          <strong>the Easter Bunny</strong>.
+        </p>
+<p><strong>Nilo knew exactly what he was doing.</strong></p>
+<p><strong>He knew that she knew.</strong></p>
+<p><strong>She decided to play along.</strong></p>
+<p>
+          It was a surprisingly effective scheme.
+        </p>
+<p>
+          It gave us two parrots.
+          <br/>
+          Rabbit stew.
+          <br/>
+          And our first date.
+        </p>
+<p><strong>The painting still hangs in our home today.</strong></p>
+</div>
+</section>
+<section class="map-section fade">
+<div class="section-head">
+<p class="chapter-number">The Pins</p>
+<h2>The Bucket List</h2>
+<p class="subtitle">A map, a little competition, and a lot of adventures.</p>
+<div aria-hidden="true" class="copy-rule"></div>
+</div>
+
+<div class="map-copy"><p>One Christmas, Fredrik gave Nilo a world map and a box of coloured pins.</p><p>It started as a way to keep track of where we had been. It quickly became a bucket list, along with a healthy amount of competition.</p><p>We each had our own colour, with another for the places we had visited together.</p><p>Shared trips changed the pins. Sometimes solo trips did too.</p><p><strong>More than twenty-five countries later, we've discovered that the more places we visit, the longer our list becomes.</strong></p></div>
+<div class="travel-collage travel-collage-final"><div class="travel-photo travel-a" style="background-image:url('https://static.wixstatic.com/media/e22f30_df9913242dfa4628a8db9be72801c7cd~mv2.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;"></div><div class="travel-photo travel-b" style="background-image:url('https://static.wixstatic.com/media/e22f30_d728753f4c5a4141b5005a0d5630917a~mv2.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;"></div><div class="travel-photo travel-c" style="background-image:url('https://static.wixstatic.com/media/e22f30_d8672824f0694ad9828aaa0ce1085438~mv2.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;"></div><div class="travel-photo travel-d" style="background-image:url('https://static.wixstatic.com/media/e22f30_c8203fc887a641b5be3366b1332d8ce7~mv2.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;"></div><div class="travel-photo travel-e" style="background-image:url('https://static.wixstatic.com/media/e22f30_d2115fb4e6fb409092d4aa3a85a22cd5~mv2.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;"></div><div class="travel-photo travel-f" style="background-image:url('https://static.wixstatic.com/media/e22f30_abd8b5e088384ec7a7fb1c185c54cf2a~mv2.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;"></div><div class="travel-photo travel-h" style="background-image:url('https://static.wixstatic.com/media/e22f30_74ac854cd00d41af920c57217d9f69e2~mv2.jpeg');background-size:cover;background-position:center;background-repeat:no-repeat;"></div><div class="travel-photo travel-i" style="background-image:url('https://static.wixstatic.com/media/e22f30_b92d01d20a324b979f8212913b6ec5f8~mv2.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;"></div><div class="travel-photo travel-j" style="background-image:url('https://static.wixstatic.com/media/e22f30_aef03580958b446b9bdd60dd386fcd31~mv2.jpeg');background-size:cover;background-position:center;background-repeat:no-repeat;"></div><div class="travel-photo travel-k" style="background-image:url('https://static.wixstatic.com/media/e22f30_3e37f97f0999455eaf58a081101d0d14~mv2.jpeg');background-size:cover;background-position:center;background-repeat:no-repeat;"></div><p class="collage-note">Some trips were for the memories. Others were clearly about the pins.</p></div>
+</section>
+<section class="chapter reverse fade">
+<div class="visual">
+<div class="photo" style="background-image:linear-gradient(180deg, rgba(66,46,26,.05), rgba(42,28,18,.28)),url('https://static.wixstatic.com/media/e22f30_8b82c56c4f76461ba6617c3dc3488053~mv2.jpeg');background-size:cover;background-position:center;background-repeat:no-repeat;">
+</div>
+<div aria-hidden="true" class="stamp">
+<span class="stamp-small">Relationship Test</span>
+<span class="stamp-city">Björnrike</span>
+<span class="stamp-country">Sweden</span>
+</div>
+</div>
+<div class="copy">
+<p class="chapter-number">The Relationship Test</p>
+<h2>Björnrike</h2>
+<p class="subtitle">Stronger than the IKEA test.</p>
+<div aria-hidden="true" class="copy-rule"></div>
+<p>
+          Some people say assembling IKEA furniture is the ultimate
+          relationship test.
+        </p>
+<p>
+          Given that Fredrik is Swedish, that probably would have been
+          the sensible option.
+        </p>
+<p>
+          Instead, he decided to teach Nilo how to snowboard.
+        </p>
+<p>
+          It was Nilo's first visit to Fredrik's family cabin in Björnrike
+          and her very first time on a snowboard.
+        </p>
+<p><strong>
+          Fredrik approached his new role as snowboard instructor
+          with great confidence.
+        </strong></p>
+<p><strong>The mountain did not share his optimism.</strong></p>
+<p>
+          What followed was a day of spectacular falls, questionable
+          coaching, and a growing suspicion that this might not have been
+          Fredrik's best idea.
+        </p>
+<p><strong>
+          More than five years later, the relationship is still going strong.
+        </strong></p>
+<p><strong>Nilo still has not been back on a snowboard.</strong></p>
+</div>
+</section>
+<section class="home-section fade">
+<div class="section-head">
+<p class="chapter-number">Home Is More Than One Place</p>
+<h2>Where We Come From</h2>
+<p class="subtitle">Before we built one together.</p>
+<div aria-hidden="true" class="copy-rule"></div>
+<p>
+          Before building a home together, we first discovered the places
+          that had always been part of each other's world.
+        </p>
+</div>
+<div class="home-grid">
+<article class="home-card"><h3>Västervik</h3><p>Fredrik took Nilo to the summer house where he had spent countless childhood summers.</p><p>Suddenly, the Swedish archipelago made a lot more sense.</p><p><strong>It was not just a beautiful place. It explained a little more about Fredrik.</strong></p></article>
+<article class="home-card">
+<h3>Bergen</h3>
+<p>
+            Bergen is where Nilo grew up, the city that shaped her and
+            where many of the people she loves most still are.
+          </p>
+<p>
+            Bergen also happens to be Europe's rainiest city.
+          </p>
+<p>
+            Against all reasonable expectations...
+            <strong>it did not rain.</strong>
+</p>
+<p>
+            Between the mountains, the sea and unexpectedly blue skies,
+            Fredrik got to know another part of Nilo's world.
+          </p>
+</article>
+</div>
+<div class="copy" style="max-width:780px;margin:42px auto 0;text-align:center;">
+<p class="chapter-number">The Road to Vienna</p>
+<h2>A Home of Our Own</h2>
+<p class="subtitle">One car, one long drive, one new life.</p>
+<div aria-hidden="true" class="copy-rule" style="margin-left:auto;margin-right:auto;"></div>
+<p>Eventually, it was time for a new adventure.</p><p>We packed up our lives in Barcelona.</p><p>A moving truck.<br/>Three pets in the car.<br/>Countless boxes.<br/>One destination.<br/>Vienna.</p><p>Somewhere between Barcelona and Vienna, home stopped being a place.</p><p><strong>It became whatever we were building together.</strong></p><div class="sheera-wrap sheera-small"><img alt="Sheera sitting on moving boxes" class="sheera-image" src="https://static.wixstatic.com/media/e22f30_32dfb1b37e0d405ebef8e74a72ad3f87~mv2.jpg"/><p class="photo-caption">Not everyone enjoyed the move.</p></div></div>
+</section>
+<section class="fade proposal-section">
+
+<div class="copy">
+<p class="chapter-number">The Easiest Question</p>
+<h2>Look at the Seals.</h2>
+<p class="subtitle">A surprisingly effective distraction.</p>
+<div aria-hidden="true" class="copy-rule"></div>
+<p>
+          On our last morning in South Africa, we got up early and hiked
+          to the top of the Cape of Good Hope.
+        </p>
+<p>
+          It was just the two of us.<br/>
+          Perfect weather.<br/>
+          A breathtaking view.
+        </p>
+<p>It felt like the perfect ending to an unforgettable trip.</p>
+<p>Then Fredrik pointed into the distance.</p>
+<p><strong>"Look at the seals."</strong></p>
+<p><strong>It was a surprisingly effective distraction.</strong></p>
+<p>
+          When Nilo turned around, Fredrik was already on one knee.
+        </p>
+<div class="proposal-yes">Yes.</div>
+<div class="proposal-photo-wrap"><img alt="Cape of Good Hope" class="proposal-photo" src="https://static.wixstatic.com/media/e22f30_29a01ff0113448d7b144a0785966cf65~mv2.jpg"/></div></div>
+</section>
+<section class="finale fade">
+<p class="finale-label">Next Chapter</p>
+<h2>Salzburg</h2>
+<p class="finale-place">
+        Mirabell Palace
+      </p>
+<p class="finale-date">
+        19 June 2027
+      </p>
+</section>
+</main>
+<script>
+    const items = document.querySelectorAll(".fade");
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    items.forEach(item => observer.observe(item));
+
+    // Report the exact content height to the parent Wix page.
+    let lastReportedHeight = 0;
+    let reportFrame;
+
+    function getContentHeight() {
+      const story = document.querySelector(".story");
+      if (!story) return 0;
+
+      const rect = story.getBoundingClientRect();
+      return Math.ceil(rect.bottom + window.scrollY);
+    }
+
+    function reportHeight() {
+      cancelAnimationFrame(reportFrame);
+      reportFrame = requestAnimationFrame(() => {
+        const height = getContentHeight();
+
+        if (height > 0 && Math.abs(height - lastReportedHeight) > 1) {
+          lastReportedHeight = height;
+          window.parent.postMessage(
+            { type: "storyHeight", height },
+            "*"
+          );
+        }
+      });
+    }
+
+    window.addEventListener("load", reportHeight);
+    window.addEventListener("resize", reportHeight);
+    window.addEventListener("orientationchange", reportHeight);
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(reportHeight);
+    }
+
+    if ("ResizeObserver" in window) {
+      const resizeObserver = new ResizeObserver(reportHeight);
+      resizeObserver.observe(document.querySelector(".story"));
+    }
+
+    // Recheck after remote images have loaded.
+    document.querySelectorAll("img").forEach(image => {
+      if (!image.complete) {
+        image.addEventListener("load", reportHeight, { once: true });
+        image.addEventListener("error", reportHeight, { once: true });
+      }
+    });
+
+    reportHeight();
+  </script>
+</body>
+</html>
